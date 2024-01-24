@@ -1,0 +1,22 @@
+6         !number of threads for OpenMP
+29999         !CASE NUMBER
+500       !Re
+4.3389    !Pr
+512 256   !INPUT TOTAL Volumes for X and Y
+1         !CHOOSE STEADY-STATE OR REAL TRANSIENT(1 for steady, 2 for transient)
+2         !CHOOSE TRANSIENT SCHEME:(1 for 1st-order, 2 for 2nd order)
+0         !INPUT STARTING IMPLCIIT EULER STEP
+1e-6      !INPUT Tol
+4.0       !INPUT END TIME
+1e-3      !INPUT Dt
+15.0      !INPUT pseudo time for T
+1e-3      !INPUT Dt for T
+4         !INPUT RK_stage
+3.0       !INPUT CFL_DIV, CFL > CFL_DIV THEN STOP
+1000      !INPUT HOW MANY STEPS PER PLOT
+0         !PLOT PLOT(0: dont plot, 1: plot)
+1         !INPUT DIS_IB
+1         !CHOOSE CONVECTION SOLVER(1 for DRP, 2 for DRP+limiter)
+4         !CHOOSE P SOLVER (4 for MG)
+1         !CHOOSE MASS-CORRECTED METHOD (1 for VELOCITY MODIFICATION)
+1         !CHOOSE EPS_SMOOTH METHOD (1 for NON-SMOOTH)
