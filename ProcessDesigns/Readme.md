@@ -46,4 +46,4 @@ Current script has not been tested.
 
 Input and output folders need to be defined.
 
-Current script has not been tested.
+Image size required depends on the required array size input for the conditional diffusion model.
