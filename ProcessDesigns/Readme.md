@@ -1,36 +1,34 @@
 ## Script to process the completed microchannel design simulations from the output files
 
 
-### Step 1: Adjust parameterizations in Design Generator Script
-[generator_v2.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/CreateDesigns/generator_v2.py) creates a set of microchannel designs with specific parameterizations.
+### Step 1: Run scripts to parse numerical simulation output from .dat files into numpy arrays
+[combine-output.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/combine-output.py) combines the numerical simulation output from a sub-set of individual runs into a larger array.
 
-Key parameterizations are:
-1) Number of pipes and thickness in **generate_pipe_network**
-2) Domain dimension = (256, 512) for a 2 x 1 rectangular domain
-3) Bezier point parameterization including I) **num_of_bezier_points** and II) control points definition in **generate_random_bezier_path**
-4) Key simulation settings in **create_run**
+[calc_performance_metrics.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/calc_performance_metrics.py) calculates the key performance metrics of {Pressure Drop, Heat Transfer Rate and Mass Imbalances} from the collated sub-set of arrays from *combine-output.py*
 
-### Step 2: Call the functions with the following 3 commands
+Notes:
+1) The arrays require a lot of memory and are first processed in sets of about 5k designs
+2) Simulation outputs are first parsed by *combine-output.py*
+3) Arrays are further loaded and processed for the 3 performance metrics in *calc_performance_metrics.py*
 
-Sequence: 
-1) Call **pipe_generator(i)** in a loop to generate the corresponding numbered designs
-2) Call **create_batchrun_folder('run')** to create the **batchrun.sh** file to batch the numerical simulator in Linux
-3) Call **create_csv('pipes')** to create a csv with a count of the number of pipes for later use
+### Step 2: Run collect_all.py
+[collect_all.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/collect_all.py) concatenates all the previously collected arrays of sub-sets of microchannel design simulation results.
+
+Sub-components: 
+1) Load and concatenate {u, v, P, T, ls} arrays from the earlier sub-sets and save the full array
+2) Load and concatenate {Mass imbalance, Pressure Drop, Heat Transfer Rate} metrics from the earlier sub-sets and save the full array
+3) Compare "Mass Imbalances" to threshold of 1e-6 and identify cases with potential convergence issues from full folder of output files (file_list)
 
 This will generate the following outputs:
-1) 'vof' and 'ls' are matplotlib contour plots of the designs
-2) 'pipes' store the pipe object for future referencing
-3) 'pts_ls' contains input_XXXXX.dat which has the starting Level-Set array for the numerical solver to initialize and solve
-4) 'run' contains run_XXXXX.inp which contains the numerical solver parameters from **create_run**
+1) combined_{u, v, P, T, ls}_all.npy
+2) {mass_bal, p_diff, Qdot}_all.npy and {mass_bal, p_diff, Qdot}_all.csv
+3) Cases with higher mass imbalances will be printed out in console for recording
 
-Files in '/pts_ls' and '/run' need to be put in the same folder with the **batchrun.sh** (shell script) and **a.out** (numerical solver) to batch run
 
-### Step 3: Additional diagnostic helper functions are available to visualize and check simulation outputs
+### Step 3: Resize {u,v,P,T} arrays and generate VOF images for Visualization and as png files for models
 
-[pipe_diagnostics.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/CreateDesigns/pipe_diagnostics.py) contains helper functions to check the output from the numerical simulation.
+[resize_arrays.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_arrays.py) contains helper functions to downsize the outputs from the numerical simulation and generate VOF .png images.
 
-With the generated output from the numerical solver, we can also batch the extraction of contour plots from the output, and the extraction of numerical convergence information from the monitor files. 
-
-The python script does the following:
-1) Call **plot_output('output')** to plot contour plots of all the physical fields (u, v, p, T, ls)
-2) Call **filter_out_divergence('mon')** to extract the time taken and convergence metrics from the monitor files generated during simulation
+The python script has the following 2 functions:
+1) **downsize_array(input_array)** downsizes the physical fields {u, v, p, T} from 512 x 256 to 128 x 128
+2) **downsize_ls(input_ls_array, output_folder)** saves the VOF as a 512 x 256 image. Downsizing can be adjusted within the function
