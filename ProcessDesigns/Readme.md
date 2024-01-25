@@ -34,6 +34,8 @@ The python script has the following 2 functions:
 2) **downsize_ls(input_ls_array, output_folder)** saves the VOF as a 512 x 256 image. Downsizing can be adjusted within the function
 
 
-### Extra Script
+### Step 4: Resize generated images from ML model back to VOF images with correct size for Visualization and as input_XXXXX.dat files for numerical simulation
 
-[resize_generated_image_to_vof.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_generated_image_to_vof.py) has been created to use PIL libraries to do image downsizing and saving and generate VOF .png images but have not been tested and are not currently being used.
+[resize_generated_image_to_vof.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_generated_image_to_vof.py) has been created to use PIL libraries to do image downsizing, saving of VOF .png images and creation of input_XXXXX.dat files for numerical simulation. 
+
+Current script has not been tested.
