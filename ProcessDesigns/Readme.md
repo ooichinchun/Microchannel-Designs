@@ -32,3 +32,8 @@ This will generate the following outputs:
 The python script has the following 2 functions:
 1) **downsize_array(input_array)** downsizes the physical fields {u, v, p, T} from 512 x 256 to 128 x 128
 2) **downsize_ls(input_ls_array, output_folder)** saves the VOF as a 512 x 256 image. Downsizing can be adjusted within the function
+
+
+### Extra Script
+
+[resize_generated_image_to_vof.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_generated_image_to_vof.py) has been created to use PIL libraries to do image downsizing and saving and generate VOF .png images but have not been tested and are not currently being used.
