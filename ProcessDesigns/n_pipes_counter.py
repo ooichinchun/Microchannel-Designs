@@ -12,8 +12,9 @@ from PIL import Image
 #os.chdir(root_dir)
 
 # Please change source and destination directories here
-folder_path = '/data/vof_images'  # Replace with the actual path to your folder
-output_folder = '/data/inlet_pipe_counts'
+folder_path = '/data/ooicc/microfluidic-channels-ph/combined_arrays/output_vof_images'  # Replace with the actual path to your folder
+output_folder = '/data/ooicc/microfluidic-channels-ph/combined_arrays/inlet_pipe_counts'
+os.makedirs(output_folder, exist_ok=True)
 
 # Initialize counters for each file type
 image_count = 0
