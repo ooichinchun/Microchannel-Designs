@@ -39,3 +39,11 @@ The python script has the following 2 functions:
 [resize_generated_image_to_vof.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_generated_image_to_vof.py) has been created to use PIL libraries to do image downsizing, saving of VOF .png images and creation of input_XXXXX.dat files for numerical simulation. 
 
 Current script has not been tested.
+
+### Step 5: Resize generated images from ML model back to VOF images with correct size for Visualization and as input_XXXXX.dat files for numerical simulation
+
+[n_pipes_counter.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/n_pipes_counter.py) has been created to use PIL libraries to do image re-sizing and creation of matching arrays for input into conditional diffusion model. 
+
+Input and output folders need to be defined.
+
+Current script has not been tested.
