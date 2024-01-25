@@ -33,17 +33,18 @@ The python script has the following 2 functions:
 1) **downsize_array(input_array)** downsizes the physical fields {u, v, p, T} from 512 x 256 to 128 x 128
 2) **downsize_ls(input_ls_array, output_folder)** saves the VOF as a 512 x 256 image. Downsizing can be adjusted within the function
 
-
-### Step 4: Resize generated images from ML model back to VOF images with correct size for Visualization and as input_XXXXX.dat files for numerical simulation
-
-[resize_generated_image_to_vof.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_generated_image_to_vof.py) has been created to use PIL libraries to do image downsizing, saving of VOF .png images and creation of input_XXXXX.dat files for numerical simulation. 
-
-Current script has not been tested.
-
-### Step 5: Resize generated images from ML model back to VOF images with correct size for Visualization and as input_XXXXX.dat files for numerical simulation
+### Step 4: Resize VOF images to desired size for Input into Conditional Design Model and create numpy arrays with inlet pipe counts
 
 [n_pipes_counter.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/n_pipes_counter.py) has been created to use PIL libraries to do image re-sizing and creation of matching arrays for input into conditional diffusion model. 
 
 Input and output folders need to be defined.
 
-Image size required depends on the required array size input for the conditional diffusion model.
+Image size required depends on the required array size input for the conditional diffusion model. Value is a constant corresponding to number of inlets into the domain.
+
+
+### Step 5: Resize generated images from ML model back to VOF images with correct size for Visualization and as input_XXXXX.dat files for numerical simulation
+
+[resize_generated_image_to_vof.py](https://github.com/ooichinchun/Microchannel-Designs/blob/main/ProcessDesigns/resize_generated_image_to_vof.py) has been created to use PIL libraries to do image downsizing, saving of VOF .png images and creation of input_XXXXX.dat files for numerical simulation. 
+
+Current script has not been tested.
+
