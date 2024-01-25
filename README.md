@@ -16,4 +16,4 @@ Note 1: This is not an official IHPC product, but please credit this work if thi
 
 Note 2: Python scripts are written for Python version 3.8
 
-This is the work of Sheares Toh, Chiu Pao-Hsiung and [Ooi Chin Chun](mailto:ooicc@cfar.a-star.edu.sg) from the Institute of High Performance Computing, A*STAR, Singapore.
+The scripts are the work of Sheares Toh, Chiu Pao-Hsiung and [Ooi Chin Chun](mailto:ooicc@cfar.a-star.edu.sg) from the Institute of High Performance Computing, A*STAR, Singapore.
